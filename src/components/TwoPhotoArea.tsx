@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Camera, Sparkles, Upload, Link as LinkIcon, X, Check } from 'lucide-react';
+import { Camera, Sparkles, X } from 'lucide-react';
 import { GIRLFRIEND_CONFIG, PhotoSlot } from '@/src/data/girlfriendData';
 import { playCutePopSound, playRomanticHarp } from '@/src/utils/soundEffects';
 import { fireHeartConfetti } from '@/src/utils/confetti';
@@ -80,33 +80,31 @@ export const TwoPhotoArea: React.FC = () => {
   };
 
   return (
-    <section className="py-8 md:py-14 relative">
-      <div className="max-w-4xl mx-auto px-4">
+    <section className="py-6 sm:py-10 md:py-14 relative px-3.5 sm:px-6">
+      <div className="max-w-4xl mx-auto">
         {/* Section Title */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-500 bg-rose-50 border border-rose-200/80 px-3.5 py-1 rounded-full mb-2">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-rose-500 bg-rose-50 border border-rose-200/80 px-3.5 py-1 rounded-full mb-2">
             <Sparkles className="w-3.5 h-3.5 text-rose-500" />
             <span>Our Two Precious Memories</span>
           </div>
           <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-slate-800">
             Photo Memories 🌸
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-md mx-auto">
-            Two special snapshots dedicated to you. Click any photo to enlarge or change it.
+          <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm sm:max-w-md mx-auto">
+            Two special snapshots dedicated to you. Tap any photo to enlarge or change it.
           </p>
         </div>
 
-        {/* The Two Photo Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-3xl mx-auto items-stretch">
+        {/* The Two Photo Grid - Perfectly aligned on mobile & desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 sm:gap-8 max-w-3xl mx-auto items-stretch">
           {/* PHOTO SLOT 1 */}
           <motion.div
-            whileHover={{ y: -6, rotate: -1 }}
-            transition={{ duration: 0.2 }}
-            className="relative bg-white p-4 pb-6 rounded-md shadow-lg shadow-rose-100/70 border border-rose-100 flex flex-col justify-between"
-            style={{ transform: `rotate(${slot1.rotation})` }}
+            whileHover={{ y: -4 }}
+            className="relative bg-white p-3.5 pb-5 sm:p-4 sm:pb-6 rounded-xl sm:rounded-md shadow-md sm:shadow-lg shadow-rose-100/70 border border-rose-100 flex flex-col justify-between transition-all rotate-0 sm:-rotate-1"
           >
             {/* Washi tape */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 washi-tape z-10 -rotate-1 rounded-xs pointer-events-none" />
+            <div className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 washi-tape z-10 -rotate-1 rounded-xs pointer-events-none" />
 
             <div>
               {/* Image Frame */}
@@ -115,7 +113,7 @@ export const TwoPhotoArea: React.FC = () => {
                   playCutePopSound();
                   setLightboxImage(slot1);
                 }}
-                className="relative aspect-4/3 w-full bg-rose-50 rounded-sm overflow-hidden mb-4 border border-slate-100 cursor-pointer group"
+                className="relative aspect-4/3 w-full bg-rose-50 rounded-lg sm:rounded-sm overflow-hidden mb-3 sm:mb-4 border border-slate-100 cursor-pointer group touch-manipulation"
               >
                 <img
                   src={slot1.image}
@@ -127,7 +125,7 @@ export const TwoPhotoArea: React.FC = () => {
                       'https://placehold.co/600x450/ffe4e6/be185d?text=Photo+1';
                   }}
                 />
-                <span className="absolute bottom-2 right-2 text-3xl select-none drop-shadow-sm group-hover:scale-125 transition-transform duration-300">
+                <span className="absolute bottom-2 right-2 text-2xl sm:text-3xl select-none drop-shadow-sm group-hover:scale-125 transition-transform duration-300">
                   {slot1.sticker}
                 </span>
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-medium">
@@ -136,27 +134,27 @@ export const TwoPhotoArea: React.FC = () => {
               </div>
 
               {/* Text & Details */}
-              <div className="text-center px-2">
+              <div className="text-center px-1 sm:px-2">
                 <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest block mb-1">
                   {slot1.dateOrNote}
                 </span>
-                <h3 className="font-handwriting text-2xl font-bold text-slate-800 leading-tight">
+                <h3 className="font-handwriting text-xl sm:text-2xl font-bold text-slate-800 leading-tight">
                   {slot1.title}
                 </h3>
-                <p className="font-serif-display text-xs text-slate-600 mt-2 italic leading-relaxed">
+                <p className="font-serif-display text-xs text-slate-600 mt-1.5 sm:mt-2 italic leading-relaxed">
                   "{slot1.caption}"
                 </p>
               </div>
             </div>
 
             {/* Quick Change Button */}
-            <div className="mt-4 pt-3 border-t border-dashed border-rose-100 flex items-center justify-between">
+            <div className="mt-3.5 pt-2.5 sm:mt-4 sm:pt-3 border-t border-dashed border-rose-100 flex items-center justify-between">
               <span className="text-[11px] font-semibold text-rose-400">Photo 1</span>
               <button
                 onClick={() => openEditor(1)}
-                className="px-3 py-1 bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold rounded-full border border-rose-200 transition-colors flex items-center gap-1 cursor-pointer"
+                className="min-h-[34px] px-3 py-1 bg-rose-50 hover:bg-rose-100 active:bg-rose-200 text-rose-600 text-xs font-semibold rounded-full border border-rose-200 transition-colors flex items-center gap-1 cursor-pointer touch-manipulation"
               >
-                <Camera className="w-3 h-3" />
+                <Camera className="w-3.5 h-3.5" />
                 <span>Change Photo</span>
               </button>
             </div>
@@ -164,13 +162,11 @@ export const TwoPhotoArea: React.FC = () => {
 
           {/* PHOTO SLOT 2 */}
           <motion.div
-            whileHover={{ y: -6, rotate: 1 }}
-            transition={{ duration: 0.2 }}
-            className="relative bg-white p-4 pb-6 rounded-md shadow-lg shadow-rose-100/70 border border-rose-100 flex flex-col justify-between"
-            style={{ transform: `rotate(${slot2.rotation})` }}
+            whileHover={{ y: -4 }}
+            className="relative bg-white p-3.5 pb-5 sm:p-4 sm:pb-6 rounded-xl sm:rounded-md shadow-md sm:shadow-lg shadow-rose-100/70 border border-rose-100 flex flex-col justify-between transition-all rotate-0 sm:rotate-1"
           >
             {/* Washi tape */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 washi-tape-lavender z-10 rotate-1 rounded-xs pointer-events-none" />
+            <div className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 washi-tape-lavender z-10 rotate-1 rounded-xs pointer-events-none" />
 
             <div>
               {/* Image Frame */}
@@ -179,7 +175,7 @@ export const TwoPhotoArea: React.FC = () => {
                   playCutePopSound();
                   setLightboxImage(slot2);
                 }}
-                className="relative aspect-4/3 w-full bg-rose-50 rounded-sm overflow-hidden mb-4 border border-slate-100 cursor-pointer group"
+                className="relative aspect-4/3 w-full bg-rose-50 rounded-lg sm:rounded-sm overflow-hidden mb-3 sm:mb-4 border border-slate-100 cursor-pointer group touch-manipulation"
               >
                 <img
                   src={slot2.image}
@@ -191,7 +187,7 @@ export const TwoPhotoArea: React.FC = () => {
                       'https://placehold.co/600x450/f5d0fe/86198f?text=Photo+2';
                   }}
                 />
-                <span className="absolute bottom-2 right-2 text-3xl select-none drop-shadow-sm group-hover:scale-125 transition-transform duration-300">
+                <span className="absolute bottom-2 right-2 text-2xl sm:text-3xl select-none drop-shadow-sm group-hover:scale-125 transition-transform duration-300">
                   {slot2.sticker}
                 </span>
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-medium">
@@ -200,27 +196,27 @@ export const TwoPhotoArea: React.FC = () => {
               </div>
 
               {/* Text & Details */}
-              <div className="text-center px-2">
+              <div className="text-center px-1 sm:px-2">
                 <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest block mb-1">
                   {slot2.dateOrNote}
                 </span>
-                <h3 className="font-handwriting text-2xl font-bold text-slate-800 leading-tight">
+                <h3 className="font-handwriting text-xl sm:text-2xl font-bold text-slate-800 leading-tight">
                   {slot2.title}
                 </h3>
-                <p className="font-serif-display text-xs text-slate-600 mt-2 italic leading-relaxed">
+                <p className="font-serif-display text-xs text-slate-600 mt-1.5 sm:mt-2 italic leading-relaxed">
                   "{slot2.caption}"
                 </p>
               </div>
             </div>
 
             {/* Quick Change Button */}
-            <div className="mt-4 pt-3 border-t border-dashed border-rose-100 flex items-center justify-between">
+            <div className="mt-3.5 pt-2.5 sm:mt-4 sm:pt-3 border-t border-dashed border-rose-100 flex items-center justify-between">
               <span className="text-[11px] font-semibold text-purple-400">Photo 2</span>
               <button
                 onClick={() => openEditor(2)}
-                className="px-3 py-1 bg-purple-50 hover:bg-purple-100 text-purple-600 text-xs font-semibold rounded-full border border-purple-200 transition-colors flex items-center gap-1 cursor-pointer"
+                className="min-h-[34px] px-3 py-1 bg-purple-50 hover:bg-purple-100 active:bg-purple-200 text-purple-600 text-xs font-semibold rounded-full border border-purple-200 transition-colors flex items-center gap-1 cursor-pointer touch-manipulation"
               >
-                <Camera className="w-3 h-3" />
+                <Camera className="w-3.5 h-3.5" />
                 <span>Change Photo</span>
               </button>
             </div>
@@ -228,9 +224,9 @@ export const TwoPhotoArea: React.FC = () => {
         </div>
 
         {/* Small subtle code hint */}
-        <div className="mt-6 text-center">
-          <p className="text-[11px] text-slate-400 font-light">
-            💡 To add photos permanently in the codebase, edit <code className="bg-rose-50 text-rose-600 px-1 py-0.5 rounded font-mono text-[10px]">photo1</code> and <code className="bg-rose-50 text-rose-600 px-1 py-0.5 rounded font-mono text-[10px]">photo2</code> in <code className="bg-rose-50 text-rose-600 px-1 py-0.5 rounded font-mono text-[10px]">src/data/girlfriendData.ts</code>
+        <div className="mt-5 sm:mt-6 text-center px-2">
+          <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+            💡 To add photos permanently in code, edit <code className="bg-rose-50 text-rose-600 px-1 py-0.5 rounded font-mono text-[10px]">photo1</code> and <code className="bg-rose-50 text-rose-600 px-1 py-0.5 rounded font-mono text-[10px]">photo2</code> in <code className="bg-rose-50 text-rose-600 px-1 py-0.5 rounded font-mono text-[10px]">src/data/girlfriendData.ts</code>
           </p>
         </div>
       </div>
@@ -238,20 +234,21 @@ export const TwoPhotoArea: React.FC = () => {
       {/* LIGHTBOX MODAL */}
       <AnimatePresence>
         {lightboxImage && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3.5 sm:p-4 bg-slate-900/60 backdrop-blur-sm">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl relative border border-rose-100 p-4 text-center"
+              exit={{ opacity: 0, scale: 0.92 }}
+              className="bg-white rounded-2xl max-w-sm sm:max-w-md w-full overflow-hidden shadow-2xl relative border border-rose-100 p-3.5 sm:p-5 text-center max-h-[90vh] overflow-y-auto"
             >
               <button
                 onClick={() => setLightboxImage(null)}
-                className="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 hover:bg-white text-slate-600 shadow-sm cursor-pointer z-10"
+                className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-white/90 hover:bg-white text-slate-600 shadow-sm cursor-pointer z-10 touch-manipulation"
+                aria-label="Close photo preview"
               >
                 <X className="w-5 h-5" />
               </button>
-              <div className="aspect-4/3 w-full rounded-lg overflow-hidden bg-slate-100 mb-3">
+              <div className="aspect-4/3 w-full rounded-xl overflow-hidden bg-slate-100 mb-3 border border-slate-100">
                 <img
                   src={lightboxImage.image}
                   alt={lightboxImage.title}
@@ -261,7 +258,7 @@ export const TwoPhotoArea: React.FC = () => {
               <h4 className="font-handwriting text-2xl font-bold text-slate-800">
                 {lightboxImage.title}
               </h4>
-              <p className="font-serif-display text-xs text-slate-600 mt-1 italic">
+              <p className="font-serif-display text-xs sm:text-sm text-slate-600 mt-1 italic leading-relaxed">
                 "{lightboxImage.caption}"
               </p>
             </motion.div>
@@ -272,16 +269,17 @@ export const TwoPhotoArea: React.FC = () => {
       {/* QUICK CHANGE PHOTO MODAL */}
       <AnimatePresence>
         {editingSlot !== null && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3.5 sm:p-4 bg-slate-900/60 backdrop-blur-sm">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl relative border border-rose-100"
+              className="bg-white rounded-2xl max-w-sm w-full p-4 sm:p-5 shadow-2xl relative border border-rose-100 max-h-[90vh] overflow-y-auto"
             >
               <button
                 onClick={() => setEditingSlot(null)}
-                className="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-600"
+                className="absolute top-3.5 right-3.5 p-1 text-slate-400 hover:text-slate-600 cursor-pointer touch-manipulation"
+                aria-label="Close editor"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -289,7 +287,7 @@ export const TwoPhotoArea: React.FC = () => {
               <h3 className="font-serif-display text-lg font-bold text-slate-900 mb-1">
                 Change Photo {editingSlot} 🌸
               </h3>
-              <p className="text-[11px] text-slate-500 mb-4">
+              <p className="text-[11px] text-slate-500 mb-3.5">
                 Upload from your phone or paste an image link to view it immediately!
               </p>
 
@@ -315,7 +313,7 @@ export const TwoPhotoArea: React.FC = () => {
                     value={customUrl.startsWith('data:') ? '' : customUrl}
                     onChange={(e) => setCustomUrl(e.target.value)}
                     placeholder="https://..."
-                    className="w-full px-2.5 py-1.5 text-xs border border-rose-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
+                    className="w-full px-2.5 py-1.5 text-xs sm:text-sm border border-rose-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
                   />
                 </div>
 
@@ -328,7 +326,7 @@ export const TwoPhotoArea: React.FC = () => {
                     value={customTitle}
                     onChange={(e) => setCustomTitle(e.target.value)}
                     placeholder="Title"
-                    className="w-full px-2.5 py-1.5 text-xs border border-rose-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
+                    className="w-full px-2.5 py-1.5 text-xs sm:text-sm border border-rose-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
                   />
                 </div>
 
@@ -341,7 +339,7 @@ export const TwoPhotoArea: React.FC = () => {
                     value={customCaption}
                     onChange={(e) => setCustomCaption(e.target.value)}
                     placeholder="Sweet caption..."
-                    className="w-full px-2.5 py-1.5 text-xs border border-rose-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
+                    className="w-full px-2.5 py-1.5 text-xs sm:text-sm border border-rose-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-400"
                   />
                 </div>
 
@@ -349,13 +347,13 @@ export const TwoPhotoArea: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setEditingSlot(null)}
-                    className="px-3 py-1.5 text-xs text-slate-500 hover:text-slate-700"
+                    className="px-3 py-1.5 text-xs text-slate-500 hover:text-slate-700 min-h-[36px]"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-1.5 bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold rounded-lg shadow-sm cursor-pointer"
+                    className="px-4 py-1.5 bg-rose-500 hover:bg-rose-600 active:bg-rose-700 text-white text-xs font-semibold rounded-lg shadow-sm cursor-pointer min-h-[36px]"
                   >
                     Update Photo ✨
                   </button>
