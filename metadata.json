@@ -1,0 +1,8 @@
+{
+  "name": "Girlfriend Day - To My Favorite Girl",
+  "description": "An aesthetic, animated Girlfriend Day website with cute scrapbooks, interactive polaroids, love letters, music, and couple vouchers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
